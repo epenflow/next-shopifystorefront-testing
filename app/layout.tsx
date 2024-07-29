@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import WrapperProvider from '@/lib/wrapper-provider';
+import { Navbar } from '@/app/__components__/navbar';
 
 const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
@@ -17,7 +18,10 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body suppressHydrationWarning className={inter.className}>
-				<WrapperProvider>{children}</WrapperProvider>
+				<WrapperProvider>
+					<Navbar />
+					{children}
+				</WrapperProvider>
 			</body>
 		</html>
 	);
