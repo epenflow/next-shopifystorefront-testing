@@ -1,5 +1,5 @@
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
-console.log('API Version', process.env.NEXT_PUBLIC_SHOPIFY_API_VERSION);
+console.log('API Version:', process.env.NEXT_PUBLIC_SHOPIFY_API_VERSION);
 console.log('Store Domain:', process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN);
 console.log(
 	'Access Token:',
