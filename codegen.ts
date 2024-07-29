@@ -24,7 +24,7 @@ const config: CodegenConfig = {
 	],
 	documents: './schema/queries.ts',
 	generates: {
-		'./libs/generated/graphql.tsx': {
+		'./lib/generated/graphql.ts': {
 			plugins: [
 				'typescript',
 				'typescript-operations',

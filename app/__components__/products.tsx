@@ -1,8 +1,8 @@
 'use client';
 import { useQuery } from '@apollo/client';
 import { GET_PRODUCTS } from '@/schema/queries';
-import { GetProductsQuery } from '@/libs/generated/graphql';
-import { MappingWrapper } from '@/libs/mapping-wrapper';
+import { GetProductsQuery } from '@/lib/generated/graphql';
+import { MappingWrapper } from '@/lib/mapping-wrapper';
 import Image from 'next/image';
 import {
 	Carousel,

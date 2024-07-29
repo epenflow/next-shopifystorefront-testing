@@ -8064,7 +8064,7 @@ export type GetCollectionByIdQueryVariables = Exact<{
 }>;
 
 
-export type GetCollectionByIdQuery = { __typename?: 'QueryRoot', collection?: { __typename?: 'Collection', handle: string, image?: { __typename?: 'Image', url: any } | null, seo: { __typename?: 'SEO', description?: string | null, title?: string | null }, products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', id: string, title: string, images: { __typename?: 'ImageConnection', nodes: Array<{ __typename?: 'Image', url: any }> } }> } } | null };
+export type GetCollectionByIdQuery = { __typename?: 'QueryRoot', collection?: { __typename?: 'Collection', handle: string, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, seo: { __typename?: 'SEO', description?: string | null, title?: string | null }, products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', id: string, title: string, images: { __typename?: 'ImageConnection', nodes: Array<{ __typename?: 'Image', url: any }> } }> } } | null };
 
 
 export const GetProductsDocument = gql`
@@ -8138,6 +8138,7 @@ export const GetCollectionByIdDocument = gql`
     handle
     image {
       url
+      altText
     }
     seo {
       description

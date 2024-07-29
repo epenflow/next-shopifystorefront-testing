@@ -1,7 +1,7 @@
 'use client';
 
-import { GetCollectionByIdQuery } from '@/libs/generated/graphql';
-import { MappingWrapper } from '@/libs/mapping-wrapper';
+import { GetCollectionByIdQuery } from '@/lib/generated/graphql';
+import { MappingWrapper } from '@/lib/mapping-wrapper';
 import { GET_COLLECTION_BY_ID } from '@/schema/queries';
 import { useQuery } from '@apollo/client';
 

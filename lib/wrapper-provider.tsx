@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 
-import client from '@/libs/apollo-client';
+import client from '@/lib/apollo-client';
 import { ApolloProvider } from '@apollo/client';
 
 interface WrapperProviderProps {
