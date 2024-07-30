@@ -39,3 +39,5 @@ next-env.d.ts
 
 #files
 apollo.config.js
+# Million Lint
+.million
