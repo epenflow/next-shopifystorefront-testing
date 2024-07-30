@@ -8,6 +8,11 @@ const nextConfig = {
 				hostname: 'cdn.shopify.com',
 				port: '',
 			},
+			{
+				protocol: 'https',
+				hostname: 'cdn.sanity.io',
+				port: '',
+			},
 		],
 	},
 };
