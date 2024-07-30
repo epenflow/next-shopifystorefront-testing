@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface MappingWrapperProps<T> {
-	items: Array<T>;
+	items?: Array<T>;
 	render: (item: T, index: number) => React.ReactNode;
 }
 export function MappingWrapper<T>({ items, render }: MappingWrapperProps<T>) {
