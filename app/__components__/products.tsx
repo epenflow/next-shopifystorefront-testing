@@ -12,6 +12,7 @@ import {
 
 export const Products = () => {
 	const { data } = useQuery<GetProductsQuery>(GET_PRODUCTS);
+	console.log(data?.products.nodes);
 	return (
 		<div className="flex flex-col items-center">
 			<MappingWrapper

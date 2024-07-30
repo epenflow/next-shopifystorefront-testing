@@ -1,12 +1,12 @@
-import { CollectionCard } from '@/app/__components__/collection-card';
-import { HomeBanner } from '@/app/__components__/home-banner';
+import { Collection } from '@/app/__components__/collection';
 import { Products } from '@/app/__components__/products';
 
 export default function Home() {
 	return (
-		<main className="mt-[62px] h-auto flex flex-col gap-4">
-			<HomeBanner />
-			<CollectionCard />
+		<main>
+			<h1>test</h1>
+			<Collection />
+			<Products />
 		</main>
 	);
 }
