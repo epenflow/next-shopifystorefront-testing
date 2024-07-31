@@ -27,7 +27,7 @@ const config: CodegenConfig = {
 			],
 			config: {
 				witHooks: true,
-				withHOC: true,
+				withHOC: false,
 				withComponent: false,
 			},
 		},

@@ -1,6 +1,5 @@
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-import * as ApolloReactHoc from '@apollo/client/react/hoc';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -8102,19 +8101,6 @@ export const GetProductsDocument = gql`
   }
 }
     `;
-export type GetProductsProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<GetProductsQuery, GetProductsQueryVariables>
-    } & TChildProps;
-export function withGetProducts<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetProductsQuery,
-  GetProductsQueryVariables,
-  GetProductsProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, GetProductsQuery, GetProductsQueryVariables, GetProductsProps<TChildProps, TDataName>>(GetProductsDocument, {
-      alias: 'getProducts',
-      ...operationOptions
-    });
-};
 
 /**
  * __useGetProductsQuery__
@@ -8179,19 +8165,6 @@ export const GetCollectionByIdDocument = gql`
   }
 }
     `;
-export type GetCollectionByIdProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<GetCollectionByIdQuery, GetCollectionByIdQueryVariables>
-    } & TChildProps;
-export function withGetCollectionById<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetCollectionByIdQuery,
-  GetCollectionByIdQueryVariables,
-  GetCollectionByIdProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, GetCollectionByIdQuery, GetCollectionByIdQueryVariables, GetCollectionByIdProps<TChildProps, TDataName>>(GetCollectionByIdDocument, {
-      alias: 'getCollectionById',
-      ...operationOptions
-    });
-};
 
 /**
  * __useGetCollectionByIdQuery__
@@ -8243,19 +8216,6 @@ export const GetCollectionsDocument = gql`
   }
 }
     `;
-export type GetCollectionsProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<GetCollectionsQuery, GetCollectionsQueryVariables>
-    } & TChildProps;
-export function withGetCollections<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetCollectionsQuery,
-  GetCollectionsQueryVariables,
-  GetCollectionsProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, GetCollectionsQuery, GetCollectionsQueryVariables, GetCollectionsProps<TChildProps, TDataName>>(GetCollectionsDocument, {
-      alias: 'getCollections',
-      ...operationOptions
-    });
-};
 
 /**
  * __useGetCollectionsQuery__
@@ -8321,19 +8281,6 @@ export const GetRecommendationCollectionDocument = gql`
   }
 }
     `;
-export type GetRecommendationCollectionProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<GetRecommendationCollectionQuery, GetRecommendationCollectionQueryVariables>
-    } & TChildProps;
-export function withGetRecommendationCollection<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetRecommendationCollectionQuery,
-  GetRecommendationCollectionQueryVariables,
-  GetRecommendationCollectionProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, GetRecommendationCollectionQuery, GetRecommendationCollectionQueryVariables, GetRecommendationCollectionProps<TChildProps, TDataName>>(GetRecommendationCollectionDocument, {
-      alias: 'getRecommendationCollection',
-      ...operationOptions
-    });
-};
 
 /**
  * __useGetRecommendationCollectionQuery__
