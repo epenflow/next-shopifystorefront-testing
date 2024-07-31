@@ -69,3 +69,34 @@ export const GET_COLLECTIONS = gql`
 		}
 	}
 `;
+export const GET_RECOMMENDATION_COLLECTION = gql`
+	query GetRecommendationCollection($id: ID!) {
+		collection(id: $id) {
+			title
+			image {
+				url
+				altText
+			}
+			seo {
+				description
+				title
+			}
+			products(first: 10) {
+				nodes {
+					id
+					title
+					priceRange {
+						minVariantPrice {
+							amount
+						}
+					}
+					images(first: 10) {
+						nodes {
+							url
+						}
+					}
+				}
+			}
+		}
+	}
+`;
