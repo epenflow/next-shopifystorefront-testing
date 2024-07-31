@@ -16,13 +16,12 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 const variables: GetCollectionsQueryVariables = {
 	first: 10,
-	query: "-'home page'",
+	query: "-'Recommendation'",
 };
 export const CarouselProducts = () => {
 	const { data } = useQuery<GetCollectionsQuery>(GET_COLLECTIONS, {
 		variables,
 	});
-	console.log(data);
 	return (
 		<Carousel
 			opts={{
