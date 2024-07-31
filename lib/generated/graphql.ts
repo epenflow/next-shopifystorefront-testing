@@ -8074,6 +8074,13 @@ export type GetCollectionsQueryVariables = Exact<{
 
 export type GetCollectionsQuery = { __typename?: 'QueryRoot', collections: { __typename?: 'CollectionConnection', nodes: Array<{ __typename?: 'Collection', title: string, id: string, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, seo: { __typename?: 'SEO', title?: string | null, description?: string | null } }> } };
 
+export type GetRecommendationCollectionQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type GetRecommendationCollectionQuery = { __typename?: 'QueryRoot', collection?: { __typename?: 'Collection', title: string, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, seo: { __typename?: 'SEO', description?: string | null, title?: string | null }, products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', id: string, title: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: any } }, images: { __typename?: 'ImageConnection', nodes: Array<{ __typename?: 'Image', url: any }> } }> } } | null };
+
 
 export const GetProductsDocument = gql`
     query GetProducts {
@@ -8283,3 +8290,80 @@ export type GetCollectionsQueryHookResult = ReturnType<typeof useGetCollectionsQ
 export type GetCollectionsLazyQueryHookResult = ReturnType<typeof useGetCollectionsLazyQuery>;
 export type GetCollectionsSuspenseQueryHookResult = ReturnType<typeof useGetCollectionsSuspenseQuery>;
 export type GetCollectionsQueryResult = Apollo.QueryResult<GetCollectionsQuery, GetCollectionsQueryVariables>;
+export const GetRecommendationCollectionDocument = gql`
+    query GetRecommendationCollection($id: ID!) {
+  collection(id: $id) {
+    title
+    image {
+      url
+      altText
+    }
+    seo {
+      description
+      title
+    }
+    products(first: 10) {
+      nodes {
+        id
+        title
+        priceRange {
+          minVariantPrice {
+            amount
+          }
+        }
+        images(first: 10) {
+          nodes {
+            url
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+export type GetRecommendationCollectionProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<GetRecommendationCollectionQuery, GetRecommendationCollectionQueryVariables>
+    } & TChildProps;
+export function withGetRecommendationCollection<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetRecommendationCollectionQuery,
+  GetRecommendationCollectionQueryVariables,
+  GetRecommendationCollectionProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, GetRecommendationCollectionQuery, GetRecommendationCollectionQueryVariables, GetRecommendationCollectionProps<TChildProps, TDataName>>(GetRecommendationCollectionDocument, {
+      alias: 'getRecommendationCollection',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useGetRecommendationCollectionQuery__
+ *
+ * To run a query within a React component, call `useGetRecommendationCollectionQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetRecommendationCollectionQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetRecommendationCollectionQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetRecommendationCollectionQuery(baseOptions: Apollo.QueryHookOptions<GetRecommendationCollectionQuery, GetRecommendationCollectionQueryVariables> & ({ variables: GetRecommendationCollectionQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetRecommendationCollectionQuery, GetRecommendationCollectionQueryVariables>(GetRecommendationCollectionDocument, options);
+      }
+export function useGetRecommendationCollectionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetRecommendationCollectionQuery, GetRecommendationCollectionQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetRecommendationCollectionQuery, GetRecommendationCollectionQueryVariables>(GetRecommendationCollectionDocument, options);
+        }
+export function useGetRecommendationCollectionSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetRecommendationCollectionQuery, GetRecommendationCollectionQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetRecommendationCollectionQuery, GetRecommendationCollectionQueryVariables>(GetRecommendationCollectionDocument, options);
+        }
+export type GetRecommendationCollectionQueryHookResult = ReturnType<typeof useGetRecommendationCollectionQuery>;
+export type GetRecommendationCollectionLazyQueryHookResult = ReturnType<typeof useGetRecommendationCollectionLazyQuery>;
+export type GetRecommendationCollectionSuspenseQueryHookResult = ReturnType<typeof useGetRecommendationCollectionSuspenseQuery>;
+export type GetRecommendationCollectionQueryResult = Apollo.QueryResult<GetRecommendationCollectionQuery, GetRecommendationCollectionQueryVariables>;
