@@ -8059,11 +8059,23 @@ export type GetProductsQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetProductsQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', title: string, productType: string, publishedAt: any, images: { __typename?: 'ImageConnection', nodes: Array<{ __typename?: 'Image', url: any }> } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, hasPreviousPage: boolean } } };
 
 export type GetCollectionByIdQueryVariables = Exact<{
-  id: Scalars['ID']['input'];
+  id?: InputMaybe<Scalars['ID']['input']>;
+  handle?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
 export type GetCollectionByIdQuery = { __typename?: 'QueryRoot', collection?: { __typename?: 'Collection', title: string, handle: string, descriptionHtml: any, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, seo: { __typename?: 'SEO', description?: string | null, title?: string | null }, products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', id: string, title: string, images: { __typename?: 'ImageConnection', nodes: Array<{ __typename?: 'Image', url: any }> } }> } } | null };
+
+export type GetCollectionQueryVariables = Exact<{
+  handle?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  first: Scalars['Int']['input'];
+  before?: InputMaybe<Scalars['String']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type GetCollectionQuery = { __typename?: 'QueryRoot', collection?: { __typename?: 'Collection', id: string, handle: string, seo: { __typename?: 'SEO', description?: string | null, title?: string | null }, products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', id: string, title: string, images: { __typename?: 'ImageConnection', nodes: Array<{ __typename?: 'Image', url: any }> } }> } } | null };
 
 export type GetCollectionsQueryVariables = Exact<{
   first: Scalars['Int']['input'];
@@ -8071,7 +8083,7 @@ export type GetCollectionsQueryVariables = Exact<{
 }>;
 
 
-export type GetCollectionsQuery = { __typename?: 'QueryRoot', collections: { __typename?: 'CollectionConnection', nodes: Array<{ __typename?: 'Collection', title: string, id: string, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, seo: { __typename?: 'SEO', title?: string | null, description?: string | null } }> } };
+export type GetCollectionsQuery = { __typename?: 'QueryRoot', collections: { __typename?: 'CollectionConnection', nodes: Array<{ __typename?: 'Collection', id: string, handle: string, title: string, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, seo: { __typename?: 'SEO', title?: string | null, description?: string | null } }> } };
 
 export type GetRecommendationCollectionQueryVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -8134,8 +8146,8 @@ export type GetProductsLazyQueryHookResult = ReturnType<typeof useGetProductsLaz
 export type GetProductsSuspenseQueryHookResult = ReturnType<typeof useGetProductsSuspenseQuery>;
 export type GetProductsQueryResult = Apollo.QueryResult<GetProductsQuery, GetProductsQueryVariables>;
 export const GetCollectionByIdDocument = gql`
-    query GetCollectionById($id: ID!) {
-  collection(id: $id) {
+    query GetCollectionById($id: ID, $handle: String) {
+  collection(id: $id, handle: $handle) {
     title
     handle
     descriptionHtml
@@ -8179,10 +8191,11 @@ export const GetCollectionByIdDocument = gql`
  * const { data, loading, error } = useGetCollectionByIdQuery({
  *   variables: {
  *      id: // value for 'id'
+ *      handle: // value for 'handle'
  *   },
  * });
  */
-export function useGetCollectionByIdQuery(baseOptions: Apollo.QueryHookOptions<GetCollectionByIdQuery, GetCollectionByIdQueryVariables> & ({ variables: GetCollectionByIdQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+export function useGetCollectionByIdQuery(baseOptions?: Apollo.QueryHookOptions<GetCollectionByIdQuery, GetCollectionByIdQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<GetCollectionByIdQuery, GetCollectionByIdQueryVariables>(GetCollectionByIdDocument, options);
       }
@@ -8198,12 +8211,73 @@ export type GetCollectionByIdQueryHookResult = ReturnType<typeof useGetCollectio
 export type GetCollectionByIdLazyQueryHookResult = ReturnType<typeof useGetCollectionByIdLazyQuery>;
 export type GetCollectionByIdSuspenseQueryHookResult = ReturnType<typeof useGetCollectionByIdSuspenseQuery>;
 export type GetCollectionByIdQueryResult = Apollo.QueryResult<GetCollectionByIdQuery, GetCollectionByIdQueryVariables>;
+export const GetCollectionDocument = gql`
+    query GetCollection($handle: String, $id: ID, $first: Int!, $before: String, $last: Int) {
+  collection(handle: $handle, id: $id) {
+    id
+    handle
+    seo {
+      description
+      title
+    }
+    products(first: $first, before: $before, last: $last) {
+      nodes {
+        id
+        title
+        images(first: $first, before: $before, last: $last) {
+          nodes {
+            url
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetCollectionQuery__
+ *
+ * To run a query within a React component, call `useGetCollectionQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCollectionQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCollectionQuery({
+ *   variables: {
+ *      handle: // value for 'handle'
+ *      id: // value for 'id'
+ *      first: // value for 'first'
+ *      before: // value for 'before'
+ *      last: // value for 'last'
+ *   },
+ * });
+ */
+export function useGetCollectionQuery(baseOptions: Apollo.QueryHookOptions<GetCollectionQuery, GetCollectionQueryVariables> & ({ variables: GetCollectionQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetCollectionQuery, GetCollectionQueryVariables>(GetCollectionDocument, options);
+      }
+export function useGetCollectionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCollectionQuery, GetCollectionQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetCollectionQuery, GetCollectionQueryVariables>(GetCollectionDocument, options);
+        }
+export function useGetCollectionSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetCollectionQuery, GetCollectionQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetCollectionQuery, GetCollectionQueryVariables>(GetCollectionDocument, options);
+        }
+export type GetCollectionQueryHookResult = ReturnType<typeof useGetCollectionQuery>;
+export type GetCollectionLazyQueryHookResult = ReturnType<typeof useGetCollectionLazyQuery>;
+export type GetCollectionSuspenseQueryHookResult = ReturnType<typeof useGetCollectionSuspenseQuery>;
+export type GetCollectionQueryResult = Apollo.QueryResult<GetCollectionQuery, GetCollectionQueryVariables>;
 export const GetCollectionsDocument = gql`
     query GetCollections($first: Int!, $query: String) {
   collections(first: $first, query: $query) {
     nodes {
-      title
       id
+      handle
+      title
       image {
         url
         altText

@@ -51,7 +51,7 @@ export const CarouselProducts = () => {
 								</h1>
 								<Link
 									className="text-sm text-foreground/85 hover:underline"
-									href={'/'}>
+									href={`/collection/${collection.handle}`}>
 									shop now
 								</Link>
 							</div>

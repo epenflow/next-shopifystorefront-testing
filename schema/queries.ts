@@ -20,8 +20,8 @@ export const GET_PRODUCTS = gql`
 	}
 `;
 export const GET_COLLECTION_BY_ID = gql`
-	query GetCollectionById($id: ID!) {
-		collection(id: $id) {
+	query GetCollectionById($id: ID, $handle: String) {
+		collection(id: $id, handle: $handle) {
 			title
 			handle
 			descriptionHtml
@@ -51,12 +51,42 @@ export const GET_COLLECTION_BY_ID = gql`
 		}
 	}
 `;
+export const GET_COLLECTION = gql`
+	query GetCollection(
+		$handle: String
+		$id: ID
+		$first: Int!
+		$before: String
+		$last: Int
+	) {
+		collection(handle: $handle, id: $id) {
+			id
+			handle
+			seo {
+				description
+				title
+			}
+			products(first: $first, before: $before, last: $last) {
+				nodes {
+					id
+					title
+					images(first: $first, before: $before, last: $last) {
+						nodes {
+							url
+						}
+					}
+				}
+			}
+		}
+	}
+`;
 export const GET_COLLECTIONS = gql`
 	query GetCollections($first: Int!, $query: String) {
 		collections(first: $first, query: $query) {
 			nodes {
-				title
 				id
+				handle
+				title
 				image {
 					url
 					altText
