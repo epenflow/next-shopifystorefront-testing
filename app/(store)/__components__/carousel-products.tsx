@@ -26,7 +26,7 @@ export const CarouselProducts = () => {
 	console.log(data);
 	return (
 		<Carousel
-			className="w-full"
+			className="w-full my-4"
 			opts={{
 				loop: true,
 				dragFree: true,
@@ -45,16 +45,16 @@ export const CarouselProducts = () => {
 					render={(collection) => (
 						<CarouselItem
 							key={collection.id}
-							className="lg:basis-1/5 basis-4/5 flex-shrink-0 relative p-0 bg-card h-96">
+							className="lg:basis-1/5 basis-4/5 flex-shrink-0 relative p-0 bg-card h-96 overflow-hidden border">
 							<Image
 								src={collection.image?.url}
 								alt={`${collection.image?.url}`}
 								sizes="100vw"
 								width={0}
 								height={0}
-								className="w-full h-full border p-10 object-contain object-center"
+								className="h-full w-full object-contain p-10 grayscale hover:grayscale-0 transition-all ease-in-out duration-300"
 							/>
-							<div className="absolute bottom-0 border-x border-b px-10 h-1/5 w-full bg-white">
+							<div className="absolute bottom-0 border-t px-10 h-1/5 w-full bg-white flex justify-center flex-col">
 								<h1 className="text-foreground/95 text-2xl">
 									{collection.title}
 								</h1>

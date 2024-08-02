@@ -59,7 +59,7 @@ export const RecommendationProductCard: React.FC<
 				sizes="100vw"
 				width={0}
 				height={0}
-				className="w-full h-full p-6 object-contain"
+				className="w-full h-full p-6 object-contain "
 			/>
 			<div
 				ref={hoverRef}
