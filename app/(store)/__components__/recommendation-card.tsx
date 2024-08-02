@@ -1,5 +1,6 @@
 'use client';
 
+import { RecommendationProductCard } from '@/app/(store)/__components__/recommendation-product-card';
 import {
 	GetRecommendationCollectionQuery,
 	GetRecommendationCollectionQueryVariables,
@@ -26,30 +27,16 @@ export const RecommendationCard = () => {
 	return (
 		<div className="py-10 space-y-3">
 			<h1 className="capitalize text-4xl px-5">Recommendation for you</h1>
-			<div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-4 px-5">
+			<div className="w-full grid grid-cols-2 lg:grid-cols-5">
 				<MappingWrapper
 					items={data?.collection?.products.nodes}
 					render={(product) => (
-						<div
+						<RecommendationProductCard
 							key={product.id}
-							className="flex gap-5 flex-col border">
-							<Image
-								src={product.images.nodes[0].url}
-								alt={`${product.title}`}
-								sizes="100vw"
-								width={0}
-								height={0}
-								className="w-full h-96 lg:h-[520px] object-cover object-center border-b p-5"
-							/>
-							<div className="px-5 space-y-2 font-medium">
-								<h1 className="line-clamp-1 text-2xl text-foreground/90 ">
-									{product.title}
-								</h1>
-								<span className="text-foreground/85 text-sm">
-									{product.priceRange.minVariantPrice.amount}
-								</span>
-							</div>
-						</div>
+							amount={product.priceRange.minVariantPrice.amount}
+							title={product.title}
+							url={product.images.nodes[0].url}
+						/>
 					)}
 				/>
 			</div>
