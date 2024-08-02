@@ -14,38 +14,47 @@ import { MappingWrapper } from '@/lib/mapping-wrapper';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import Autoplay from 'embla-carousel-autoplay';
 const variables: GetCollectionsQueryVariables = {
-	first: 10,
+	first: 20,
 	query: "-'Recommendation'",
 };
 export const CarouselProducts = () => {
 	const { data } = useQuery<GetCollectionsQuery>(GET_COLLECTIONS, {
 		variables,
 	});
+	console.log(data);
 	return (
 		<Carousel
+			className="w-full"
 			opts={{
 				loop: true,
 				dragFree: true,
 				dragThreshold: 10,
 				skipSnaps: true,
-			}}>
-			<CarouselContent className="gap-2 pl-2 lg:gap-5 lg:pl-5">
+				align: 'center',
+			}}
+			plugins={[
+				Autoplay({
+					delay: 5000,
+				}),
+			]}>
+			<CarouselContent>
 				<MappingWrapper
 					items={data?.collections.nodes}
 					render={(collection) => (
 						<CarouselItem
 							key={collection.id}
-							className="basis-4/5 lg:basis-1/2 flex-shrink-0 relative p-0 bg-card">
+							className="lg:basis-1/5 basis-4/5 flex-shrink-0 relative p-0 bg-card h-96">
 							<Image
 								src={collection.image?.url}
 								alt={`${collection.image?.url}`}
 								sizes="100vw"
 								width={0}
 								height={0}
-								className="w-full h-60 lg:h-96 object-cover object-center border"
+								className="w-full h-full border p-10 object-contain object-center"
 							/>
-							<div className="w-full flex text-end p-2 font-medium flex-col justify-end items-end capitalize border border-t-0">
+							<div className="absolute bottom-0 border-x border-b px-10 h-1/5 w-full bg-white">
 								<h1 className="text-foreground/95 text-2xl">
 									{collection.title}
 								</h1>

@@ -27,7 +27,6 @@ export default function CollectionPage({ params }: CollectionPageProps) {
 	const { data } = useQuery<GetCollectionQuery>(GET_COLLECTION, {
 		variables,
 	});
-	console.log(data);
 	return (
 		<div className="grid grid-cols-2 gap-2 px-2">
 			<MappingWrapper

@@ -23,7 +23,6 @@ export const RecommendationCard = () => {
 			variables,
 		},
 	);
-	console.log(data);
 	return (
 		<div className="py-10 space-y-3">
 			<h1 className="capitalize text-4xl px-5">Recommendation for you</h1>

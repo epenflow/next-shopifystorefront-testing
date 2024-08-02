@@ -1,3 +1,25 @@
+type IsAny<T> = T
+
+
+type NotAny<T> = true extends IsAny<T> ? false : true
+import NotAny
+/**
+ * ## TypeScript Conditional Types
+ * - The line `type Extends<A,B> = A extends B ? true : false` is TypeScript
+ * conditional type
+ * - `A extends B` : This checks if type `A` is assignable to type `B`.
+ * in other words, it checks if `A` is a subtype of `B`
+ * - `? true : false` : This is a ternary operator. if condition
+ * (`A extends B`) is true, it returns `true`; otherwise, it returns `false`
+ *
+ * ### Putting It Together
+ * - `type Extends<A, B>` : This defines a new type called `Extends` that takes
+ * two type parameters `A` and `B`
+ * - `= A extends B ? true : false` : This part checks if `A` is subtype of `B`.
+ * If it is, `Extends<A,B>` will be `true`; otherwise, it will be `false`
+ */
+type Extends<A, B> = A extends B ? true : false;
+
 /**
  * ## Type Definition
  * ```js

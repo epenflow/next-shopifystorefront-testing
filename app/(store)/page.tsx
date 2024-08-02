@@ -5,7 +5,7 @@ import { RecommendationCard } from '@/app/(store)/__components__/recommendation-
 
 export default function Home() {
 	return (
-		<main className="space-y-2.5 overflow-x-hidden">
+		<main className="space-y-5 overflow-x-hidden">
 			<Hero />
 			<h1 className="text-5xl px-2 lg:px-4">Explore The Collection</h1>
 			<CarouselProducts />
